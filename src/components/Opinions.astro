@@ -1,0 +1,41 @@
+---
+// Ressenyes reals de Google amb el text original. Totes de 5 estrelles: aquí sí que es mostra la nota.
+import { textos, opinions, type Lang } from '../i18n/textos';
+import { negoci } from '../config';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].opinions;
+const gran = opinions.find((o) => o.gran)!;
+const petites = opinions.filter((o) => !o.gran);
+---
+
+<section id="opinions" class="border-t border-linia">
+  <div class="mx-auto max-w-7xl px-5 py-24 md:py-32">
+    <div class="revela flex flex-wrap items-end justify-between gap-8">
+      <div>
+        <p class="sobre">{t.sobre}</p>
+        <h2 class="titol mt-4 text-4xl md:text-6xl">{t.titol}</h2>
+      </div>
+      <a href={negoci.mapsUrl} target="_blank" rel="noopener" class="flex items-baseline gap-4">
+        <span class="titol neo-magenta text-7xl md:text-8xl">{negoci.nota}</span>
+        <span class="text-sm text-gris"><span class="block text-lg tracking-widest text-magenta" aria-hidden="true">★★★★★</span>{negoci.ressenyes} {t.estrelles}</span>
+      </a>
+    </div>
+
+    <div class="mt-14 grid gap-4 lg:grid-cols-[1.25fr_1fr]">
+      <blockquote class="revela flex flex-col rounded border border-linia bg-negre-2 p-8 md:p-10">
+        <span class="titol -mb-4 text-8xl leading-none text-magenta/40" aria-hidden="true">“</span>
+        <p class="flex-1 text-xl leading-relaxed md:text-2xl">{gran.text}</p>
+        <footer class="mt-8 text-sm text-gris">{gran.autor} · Google</footer>
+      </blockquote>
+      <div class="grid gap-4">
+        {petites.map((o, i) => (
+          <blockquote class="revela rounded border border-linia bg-negre-2 px-7 py-5" style={`transition-delay:${i * 80}ms`}>
+            <p class="leading-relaxed text-os/85">«{o.text}»</p>
+            <footer class="mt-2 text-sm text-gris">{o.autor || t.client}</footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+    <a href={negoci.mapsUrl} target="_blank" rel="noopener" class="mt-10 inline-flex items-center gap-2 font-semibold hover:text-cian">{t.veureTotes} <span aria-hidden="true">→</span></a>
+  </div>
+</section>

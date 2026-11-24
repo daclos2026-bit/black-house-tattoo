@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Avis from './Avis.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Artistes from './Artistes.astro';
+import Galeria from './Galeria.astro';
+import Estudi from './Estudi.astro';
+import Cita from './Cita.astro';
+import Cures from './Cures.astro';
+import Preguntes from './Preguntes.astro';
+import Opinions from './Opinions.astro';
+import OnSom from './OnSom.astro';
+import Footer from './Footer.astro';
+import type { Lang } from '../i18n/textos';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Base lang={lang}>
+  <Avis lang={lang} />
+  <Header lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <Artistes lang={lang} />
+    <Galeria lang={lang} />
+    <Estudi lang={lang} />
+    <Cita lang={lang} />
+    <Opinions lang={lang} />
+    <Cures lang={lang} />
+    <Preguntes lang={lang} />
+    <OnSom lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  import { pintaEstat } from '../scripts/estat';
+  import { encenNeons } from '../scripts/neo';
+  import { iniciaArtistes } from '../scripts/artista';
+  pintaEstat();
+  encenNeons();
+  iniciaArtistes();
+  // Aparició en fer scroll
+  const io = new IntersectionObserver(
+    (entrades) => {
+      for (const e of entrades) {
+        if (!e.isIntersecting) continue;
+        e.target.classList.add('vist');
+        io.unobserve(e.target);
+      }
+    },
+    { rootMargin: '0px 0px -10% 0px' },
+  );
+  document.querySelectorAll('.revela').forEach((el) => io.observe(el));
+</script>

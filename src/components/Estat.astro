@@ -1,0 +1,10 @@
+---
+// Pastilla "Obert ara · tanca a les 19:00". La rellena src/scripts/estat.ts en el navegador.
+import { textos, type Lang } from '../i18n/textos';
+interface Props { lang: Lang; class?: string; }
+const { lang, class: cls = '' } = Astro.props;
+---
+<p data-estat class={`flex items-center gap-2.5 ${cls}`}>
+  <span class="punt"></span>
+  <span><strong data-estat-titol class="font-semibold">{textos[lang].horari.titol}</strong> <span data-estat-detall class="text-gris"></span></span>
+</p>

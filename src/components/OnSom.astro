@@ -1,0 +1,42 @@
+---
+// Horari + adreça + mapa en una sola secció.
+import { textos, type Lang } from '../i18n/textos';
+import { horari, negoci, igLink, dmLink } from '../config';
+import Estat from './Estat.astro';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].horari;
+const c = textos[lang].contacte;
+---
+
+<section id="on-som" class="border-t border-linia bg-negre-2">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:py-32 lg:grid-cols-[1fr_1.15fr]">
+    <div class="revela">
+      <p class="sobre">{t.sobre}</p>
+      <h2 class="titol mt-4 text-4xl md:text-6xl">{t.titol}</h2>
+      <p class="mt-5 max-w-md text-os/75">{t.text}</p>
+      <Estat lang={lang} class="mt-7 inline-flex rounded-full border border-linia px-5 py-3" />
+      <dl class="mt-8 max-w-md">
+        {horari.map((h) => (
+          <div class="group flex items-baseline justify-between gap-4 border-b border-linia py-2.5 data-[avui]:font-bold data-[avui]:text-white" data-dia={h.dia}>
+            <dt class="flex items-center gap-3">{t.dies[h.dia - 1]}<span class="hidden text-xs font-bold tracking-widest text-magenta uppercase group-data-[avui]:inline">{t.avui}</span></dt>
+            <dd class={`text-right tabular-nums ${h.hores.length ? '' : 'text-gris'}`}>{h.hores.length ? h.hores.join(' · ') : t.tancat}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="revela grid content-start gap-6">
+      <div class="aspect-[4/3] overflow-hidden rounded border border-linia">
+        <iframe src={negoci.mapsEmbed} title={c.mapaTitol} class="h-full w-full [filter:invert(.92)_hue-rotate(180deg)_grayscale(.4)]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <address class="text-lg not-italic leading-relaxed"><span class="sobre !text-gris block">{c.adreca}</span>{negoci.adreca}<br />{negoci.cp}</address>
+        <div class="flex flex-wrap gap-3">
+          <a href={negoci.mapsUrl} target="_blank" rel="noopener" class="btn btn-linia">{c.comArribar}</a>
+          <a href={dmLink()} target="_blank" rel="noopener" class="btn btn-magenta">{c.dm}</a>
+        </div>
+      </div>
+      <a href={igLink()} target="_blank" rel="noopener" class="text-gris hover:text-cian">{c.insta}: <strong class="text-os">@{negoci.instagram}</strong></a>
+    </div>
+  </div>
+</section>

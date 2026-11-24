@@ -1,0 +1,28 @@
+---
+import { textos, type Lang } from '../i18n/textos';
+import { negoci, artistes, igLink } from '../config';
+import Logo from './Logo.astro';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].footer;
+---
+
+<footer class="border-t border-linia">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-8 px-5 py-12 text-sm text-gris">
+    <div class="flex items-center gap-6">
+      <Logo />
+      <span>{negoci.adreca} · {negoci.cp}</span>
+    </div>
+    <ul class="flex flex-wrap gap-5">
+      {[negoci.instagram, ...artistes.map((a) => a.instagram)].map((u) => (
+        <li><a href={igLink(u)} target="_blank" rel="noopener" class="hover:text-cian">@{u}</a></li>
+      ))}
+    </ul>
+    <nav class="flex gap-5" aria-label="Legal">
+      <!-- PENDIENTE: páginas legales (LSSI, RGPD, cookies). -->
+      <a href="#" class="hover:text-os">{t.avis}</a>
+      <a href="#" class="hover:text-os">{t.privacitat}</a>
+      <a href="#" class="hover:text-os">{t.cookies}</a>
+    </nav>
+    {negoci.demo && <p class="w-full text-xs opacity-70">{t.demo}</p>}
+  </div>
+</footer>

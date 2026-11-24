@@ -1,0 +1,63 @@
+---
+// Treballs. Totes les fotos són de la fitxa de Google Maps i les va pujar el mateix estudi (set. 2026).
+// PENDIENTE: confirmar que són de Nawi (pel realisme black & grey, segur que sí) i demanar fotos de Paula.
+// Descartada una foto amb un personatge de dibuixos animats (personatge amb drets) i el vídeo.
+import { Image } from 'astro:assets';
+import { textos, type Lang } from '../i18n/textos';
+import { artistes, igLink, negoci } from '../config';
+import oniPit from '../assets/img/oni-pit.jpg';
+import ullRellotge from '../assets/img/ull-rellotge.jpg';
+import donaCalavera from '../assets/img/dona-calavera.jpg';
+import donaUlls from '../assets/img/dona-ulls-embenats.jpg';
+import cristEsquena from '../assets/img/crist-esquena.jpg';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].galeria;
+const ta = textos[lang].artistes;
+const fotos = [
+  { id: 'crist-esquena', src: cristEsquena, de: 'nawi' },
+  { id: 'dona-ulls-embenats', src: donaUlls, de: 'nawi' },
+  { id: 'oni-pit', src: oniPit, de: 'nawi' },
+  { id: 'ull-rellotge', src: ullRellotge, de: 'nawi' },
+  { id: 'dona-calavera', src: donaCalavera, de: 'nawi' },
+];
+const nomDe = (id: string) => artistes.find((a) => a.id === id)!.nom;
+---
+
+<section id="treballs" class="border-t border-linia bg-negre-2">
+  <div class="mx-auto max-w-7xl px-5 py-24 md:py-32">
+    <div class="revela flex flex-wrap items-end justify-between gap-8">
+      <div>
+        <p class="sobre">{t.sobre}</p>
+        <h2 class="titol mt-4 text-4xl md:text-6xl">{t.titol}</h2>
+        <p class="mt-5 max-w-lg text-lg text-gris">{t.text}</p>
+      </div>
+      <div class="flex flex-wrap gap-2" role="group" aria-label={ta.titol}>
+        <button type="button" data-tria="tots" aria-pressed="true" class="xip px-4 py-2 text-sm font-semibold">{ta.tots}</button>
+        {artistes.map((a) => (
+          <button type="button" data-tria={a.id} aria-pressed="false" class="xip px-4 py-2 text-sm font-semibold">{a.nom}</button>
+        ))}
+      </div>
+    </div>
+
+    <div data-filtre="tots" class="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+      {fotos.map((f, i) => (
+        <figure data-de={f.de} class="revela group gra relative break-inside-avoid overflow-hidden rounded" style={`transition-delay:${(i % 3) * 90}ms`}>
+          <Image src={f.src} alt={t.alts[f.id]} widths={[400, 700, 1000]} sizes="(min-width: 1024px) 31vw, (min-width: 640px) 48vw, 100vw" class="w-full grayscale-[0.15] transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0" />
+          <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-negre/90 to-transparent px-4 pt-10 pb-3 text-sm opacity-0 transition group-hover:opacity-100 group-focus-within:opacity-100">
+            <span class="text-cian">{nomDe(f.de)}</span>
+          </figcaption>
+        </figure>
+      ))}
+      <!-- Paula encara no té fotos a la web: en lloc d'inventar-ne, enviem al seu Instagram -->
+      <div data-de="paula" class="revela break-inside-avoid rounded border border-dashed border-cian/40 p-8">
+        <p class="titol neo-cian text-3xl">Paula Danta</p>
+        <p class="mt-4 text-os/75">{t.senseFotos}</p>
+        <a href={igLink('pauladantattoo')} target="_blank" rel="noopener" class="btn btn-linia mt-6">@pauladantattoo</a>
+      </div>
+    </div>
+
+    <a href={igLink(negoci.instagram)} target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 font-semibold hover:text-cian">
+      {t.mesInsta} <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

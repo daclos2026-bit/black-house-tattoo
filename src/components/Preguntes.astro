@@ -1,0 +1,25 @@
+---
+import { textos, type Lang } from '../i18n/textos';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].preguntes;
+---
+
+<section id="preguntes" class="border-t border-linia bg-negre-2">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:py-32 lg:grid-cols-[1fr_1.6fr]">
+    <div class="revela">
+      <p class="sobre">{t.sobre}</p>
+      <h2 class="titol mt-4 text-4xl md:text-6xl">{t.titol}</h2>
+    </div>
+    <div class="revela divide-y divide-linia border-y border-linia">
+      {t.items.map(([q, a]) => (
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-semibold hover:text-cian">
+            {q}
+            <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-linia text-xl transition group-open:rotate-45 group-open:border-magenta group-open:text-magenta" aria-hidden="true">+</span>
+          </summary>
+          <p class="pb-6 leading-relaxed text-os/75">{a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

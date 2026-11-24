@@ -1,0 +1,11 @@
+---
+// Redibuix aproximat del seu logo escrit a mà ("black house" + "TATTOO").
+// PENDIENTE: demanar-los el logo original en vector (SVG o PDF) i posar-lo aquí.
+interface Props { class?: string; gran?: boolean; }
+const { class: cls = '', gran = false } = Astro.props;
+---
+<span class={`inline-flex flex-col items-center leading-none text-os ${cls}`} aria-hidden="true">
+  <span class={`font-[family-name:var(--font-ma)] -rotate-6 ${gran ? 'text-5xl' : 'text-[1.35rem]'}`} style="line-height:.8">black</span>
+  <span class={`font-[family-name:var(--font-ma)] -rotate-6 ${gran ? 'ml-8 text-5xl' : 'ml-4 text-[1.35rem]'}`} style="line-height:.8">house</span>
+  <span class={`titol tracking-[0.35em] ${gran ? 'mt-2 ml-14 text-xs' : 'mt-0.5 ml-7 text-[0.45rem]'}`}>tattoo</span>
+</span>

@@ -1,0 +1,27 @@
+---
+// Consells generals de cura. Al seu Instagram tenen una història destacada "Curados".
+// PENDIENTE: que l'estudi revisi els passos i digui quina crema recomana (sense marques a la web).
+import { textos, type Lang } from '../i18n/textos';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].cures;
+---
+
+<section id="cures" class="border-t border-linia">
+  <div class="mx-auto max-w-7xl px-5 py-24 md:py-32">
+    <div class="revela max-w-2xl">
+      <p class="sobre">{t.sobre}</p>
+      <h2 class="titol mt-4 text-4xl md:text-6xl">{t.titol}</h2>
+      <p class="mt-6 text-lg leading-relaxed text-os/75">{t.text}</p>
+    </div>
+    <ol class="mt-14 grid gap-px overflow-hidden rounded border border-linia bg-linia sm:grid-cols-2 lg:grid-cols-4">
+      {t.passos.map(([titol, text], i) => (
+        <li class="revela bg-negre p-7" style={`transition-delay:${i * 90}ms`}>
+          <span class="titol neo-cian text-5xl">{i + 1}</span>
+          <h3 class="mt-6 text-lg font-bold">{titol}</h3>
+          <p class="mt-3 leading-relaxed text-os/70">{text}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="mt-6 text-sm text-gris">{t.avis}</p>
+  </div>
+</section>

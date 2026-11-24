@@ -1,0 +1,26 @@
+---
+// Línia de neó com la de la paret de la cabina. S'encén (es dibuixa i parpelleja) quan entra a la pantalla.
+// La lògica és a src/scripts/neo.ts. Variants:
+//  - ona: la corba ondulada de la cabina
+//  - pols: un batec, com la línia del seu logo de perfil
+//  - traç: una ona més curta per als separadors
+interface Props {
+  color?: 'magenta' | 'cian';
+  variant?: 'ona' | 'pols' | 'traç';
+  class?: string;
+  immediata?: boolean; // true = s'encén en carregar (portada)
+}
+const { color = 'cian', variant = 'ona', class: cls = '', immediata = false } = Astro.props;
+const camins = {
+  ona: 'M0 78 C 70 78 110 40 170 38 S 250 92 320 90 S 400 18 470 26 S 540 96 610 84 S 690 30 760 36 S 850 98 930 80 S 1010 24 1080 40 S 1160 76 1200 70',
+  pols: 'M0 60 H 380 L 410 60 L 432 22 L 462 104 L 492 8 L 520 92 L 540 60 H 640 C 700 60 720 30 780 30 S 860 86 920 74 S 1040 40 1200 52',
+  'traç': 'M10 60 C 120 60 160 22 240 26 S 360 96 440 86 S 560 30 640 40',
+};
+const viewBox = variant === 'traç' ? '0 0 650 120' : '0 0 1200 120';
+---
+
+<svg class={`neo-linia ${cls}`} data-color={color} data-immediata={immediata || undefined} viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path class="halo" d={camins[variant]} />
+  <path class="color" d={camins[variant]} />
+  <path class="nucli" d={camins[variant]} />
+</svg>

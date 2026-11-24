@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import { textos, type Lang } from '../i18n/textos';
+import cabina from '../assets/img/cabina.jpg';
+import recepcio from '../assets/img/recepcio.jpg';
+import Neo from './Neo.astro';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].estudi;
+---
+
+<section id="estudi" class="relative border-t border-linia">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:py-32 lg:grid-cols-[1fr_1.3fr] lg:items-center">
+    <div class="revela">
+      <p class="sobre">{t.sobre}</p>
+      <h2 class="titol mt-4 text-4xl md:text-6xl">{t.titol}</h2>
+      <p class="mt-6 max-w-md text-lg leading-relaxed text-os/75">{t.text}</p>
+      <ul class="mt-8 space-y-3">
+        {t.punts.map((p) => (
+          <li class="flex items-center gap-3"><span class="h-px w-6 bg-cian shadow-[0_0_8px_var(--color-cian)]"></span>{p}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="grid grid-cols-[1.4fr_1fr] gap-4">
+      <div class="revela gra relative overflow-hidden rounded">
+        <Image src={cabina} alt={t.altCabina} widths={[500, 800, 1100]} sizes="(min-width: 1024px) 34vw, 60vw" class="h-full w-full object-cover" />
+      </div>
+      <div class="revela gra relative mt-16 overflow-hidden rounded" style="transition-delay:120ms">
+        <Image src={recepcio} alt={t.altRecepcio} widths={[400, 700]} sizes="(min-width: 1024px) 24vw, 40vw" class="h-full w-full object-cover" />
+      </div>
+    </div>
+  </div>
+  <Neo variant="ona" color="cian" class="pointer-events-none h-20 w-full" />
+</section>

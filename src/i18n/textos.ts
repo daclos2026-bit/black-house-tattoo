@@ -1,0 +1,343 @@
+// Todos los textos de la web en catalán y castellano.
+// Los datos (horario, artistas, Instagram) están en src/config.ts.
+
+export type Lang = 'ca' | 'es';
+
+// Reseñas reales de Google con su texto original (no se traducen). Todas son de 5 estrellas.
+// La de Roger Rosales se corta en "goad", tal cual sale en Maps: se deja hasta "la bestia".
+// PENDIENTE: las tres frases cortas son los "destacados" de la ficha de Maps; buscar el autor
+// iniciando sesión en Google.
+export const opinions = [
+  {
+    text: 'Estoy encantadísimo con el resultado. Desde el primer momento se nota la profesionalidad, el cuidado y la atención al detalle. Me hizo sentir muy cómodo durante todo el proceso, escuchando lo que quería y aportando ideas para conseguir un resultado todavía mejor.',
+    autor: 'Fede Calull',
+    gran: true,
+  },
+  {
+    text: 'Tiene mucha paciencia, te explica muy a detalle las cosas, te realiza varios tipos de diseño y tamaños, es muy profesional y se le apasiona cada tatuaje que realiza. Nawi la bestia 🐐',
+    autor: 'Roger Rosales',
+  },
+  {
+    text: 'Servicio 10/10 todo muy limpio y muy profesional el chico me gusta que te ayuda a dar ideas y te entabla conversación se siente muy fluido el servicio como si estuvieras con un amigo de toda la vida',
+    autor: 'Juan Camilo Jiménez',
+  },
+  { text: 'Me realizó mi primer tatuaje y quedó tal y como lo quería.', autor: '' },
+  { text: 'El ambiente limpio y buena música para aguantar las horitas de tinta!!', autor: '' },
+];
+
+const ca = {
+  meta: {
+    title: 'Black House Tattoo Studio · Estudi de tatuatges a Reus',
+    description:
+      'Estudi de tatuatges al carrer d’Espronceda, 5A de Reus. Realisme black & grey, chicano, fineline i blackwork. Demana cita per Instagram.',
+  },
+  altreIdioma: { href: '/es/', label: 'Castellano' },
+  nav: { artistes: 'Artistes', treballs: 'Treballs', cita: 'Cita', cures: 'Cures', onSom: 'On som' },
+  estat: {
+    obert: 'Obert ara',
+    tancat: 'Tancat ara',
+    tancaA: 'tanca a les',
+    obreA: 'obre a les',
+    obreDema: 'obre demà a les',
+    obreDia: 'obre el',
+    a: 'a les',
+    avisTancat: 'Tancat temporalment',
+    dies: ['dilluns', 'dimarts', 'dimecres', 'dijous', 'divendres', 'dissabte', 'diumenge'],
+  },
+  hero: {
+    sobre: 'Tattoo studio · Reus',
+    titol: ['Art, detall i', 'personalitat.'],
+    text: 'Realisme en blanc i negre, chicano, fineline i blackwork. Dissenys fets per a tu, en un estudi net i tranquil al carrer d’Espronceda.',
+    cta: 'Demana cita',
+    cta2: 'Veure treballs',
+    fotoAlt: 'La façana de Black House Tattoo Studio, negra, amb el rètol i el neó rosa',
+    ressenyes: 'ressenyes a Google',
+  },
+  artistes: {
+    sobre: '01 — L’equip',
+    titol: 'Tria el teu artista',
+    text: 'Dos estils molt diferents sota el mateix sostre. Tria amb qui vols tatuar-te i et portem al seu treball.',
+    tots: 'Tots',
+    veureInsta: 'Veure el seu Instagram',
+    demanar: 'Demanar cita amb',
+    // PENDIENTE: que cada artista revise su texto.
+    bio: {
+      nawi: 'Peces grans de realisme en blanc i negre i estil chicano: retrats, religiós, calaveres, rellotges. Té clients que hi tornen des del 2021.',
+      paula: 'Línia fina i blackwork: peces delicades, lletres i dissenys petits amb molt de detall. Agenda oberta.',
+    },
+  },
+  galeria: {
+    sobre: '02 — Treballs',
+    titol: 'Pell, tinta i temps',
+    text: 'Alguns dels treballs fets a l’estudi. N’hi ha molts més a Instagram, també curats.',
+    senseFotos: 'Encara no tenim les seves fotos aquí. Mira el seu treball a Instagram mentrestant.',
+    mesInsta: 'Més treballs a Instagram',
+    alts: {
+      'oni-pit': 'Màscara oni amb ornaments al pit, en realisme blanc i negre',
+      'ull-rellotge': 'Avantbraç amb l’ull de la providència, un rellotge i una rosa',
+      'dona-calavera': 'Avantbraç amb un retrat de dona i una calavera',
+      'dona-ulls-embenats': 'Avantbraç amb un retrat de dona amb els ulls embenats',
+      'crist-esquena': 'Crist crucificat a tota l’esquena amb la inscripció Natus Vincere',
+    } as Record<string, string>,
+  },
+  estudi: {
+    sobre: '03 — L’estudi',
+    titol: 'Com si fossis a casa',
+    text: 'Un espai net, amb llum, bona música i el temps que calgui. Material d’un sol ús i cabina pensada per a sessions llargues.',
+    punts: ['Material estèril d’un sol ús', 'Disseny a mida, sense pressa', 'Sessions llargues còmodes'],
+    altCabina: 'La cabina de tatuar, amb la llitera i una línia de neó blau a la paret',
+    altRecepcio: 'La recepció de l’estudi amb el logo i el neó magenta',
+  },
+  cita: {
+    sobre: '04 — Cita',
+    titol: 'Explica’ns la teva idea',
+    text: 'Omple això en un minut. Et preparem el missatge i t’obrim el xat d’Instagram de l’estudi: només l’has d’enganxar i enviar.',
+    artista: 'Amb qui?',
+    qualsevol: 'M’és igual',
+    tipus: 'Què vols?',
+    tipusOpcions: [
+      ['propi', 'Disseny a mida'],
+      ['flash', 'Un flash de l’estudi'],
+      ['coverup', 'Tapar-ne un (cover-up)'],
+      ['nose', 'Encara no ho sé'],
+    ],
+    zona: 'Zona del cos',
+    zonaPh: 'Avantbraç, esquena, costelles…',
+    mida: 'Mida aproximada',
+    mides: [
+      ['petit', 'Petit (fins a 5 cm)'],
+      ['mitja', 'Mitjà (mà oberta)'],
+      ['gran', 'Gran (avantbraç, cuixa…)'],
+      ['peca', 'Peça sencera (màniga, esquena…)'],
+    ],
+    idea: 'La teva idea',
+    ideaPh: 'Explica què t’agradaria. Si tens referències, les podràs enviar per Instagram.',
+    nom: 'El teu nom',
+    enviar: 'Copiar i obrir Instagram',
+    copiat: 'Missatge copiat. Enganxa’l al xat i envia’l.',
+    noCopiat: 'No l’hem pogut copiar. Copia’l d’aquí:',
+    previa: 'El missatge que enviaràs',
+    nota: 'Instagram no deixa escriure el missatge per tu: per això el copiem. Si ho prefereixes, passa per l’estudi.',
+    // Plantilla del mensaje: {campos} se rellenan con lo que ponga el cliente
+    missatge: {
+      hola: 'Hola! Escric des de la web per demanar cita.',
+      artista: 'Artista',
+      tipus: 'Què vull',
+      zona: 'Zona',
+      mida: 'Mida',
+      idea: 'Idea',
+      nom: 'Nom',
+    },
+  },
+  cures: {
+    sobre: '06 — Cures',
+    titol: 'Un bon tatuatge també es cura',
+    text: 'El que fem a la cabina és la meitat. L’altra meitat és teva les properes setmanes.',
+    avis: 'Són consells generals: segueix sempre el que et digui el teu tatuador.',
+    passos: [
+      ['Les primeres hores', 'Deixa el film o l’apòsit el temps que t’hagi indicat el tatuador. Després, renta amb aigua tèbia i sabó neutre, amb les mans netes.'],
+      ['Crema, poca', 'Una capa molt fina de crema cicatritzant dues o tres vegades al dia. Ha de respirar: millor poc que massa.'],
+      ['No toquis', 'Picarà i farà pellofa. No la gratis ni l’arrenquis: és la tinta assentant-se.'],
+      ['Res de sol ni aigua', 'Ni platja, ni piscina, ni sauna mentre es cura. Després, protector solar alt sempre: el sol és el que més fa perdre color.'],
+    ],
+  },
+  preguntes: {
+    sobre: '07 — Dubtes',
+    titol: 'Preguntes freqüents',
+    // PENDIENTE: confirmar todas las respuestas con el estudio antes de enseñar la demo.
+    items: [
+      ['Quant costa un tatuatge?', 'Depèn de la mida, la zona i el detall. Explica’ns la idea i et donem pressupost sense compromís.'],
+      ['Cal paga i senyal?', 'Per reservar la sessió es demana una paga i senyal que es descompta del preu final. T’ho expliquem en donar-te cita.'],
+      ['Puc venir sense cita?', 'Per a consultes sí, en horari d’obertura. Per tatuar, millor amb cita, excepte els dies de flash.'],
+      ['Feu retocs?', 'Sí: si després de curar cal repassar alguna zona, t’ho mirem.'],
+      ['Puc tatuar-me si sóc menor?', 'Només tatuem majors d’edat.'],
+      ['Feu cover-ups?', 'Sí, tapem o renovem tatuatges antics. Envia’ns una foto del que tens i en parlem.'],
+    ],
+  },
+  opinions: {
+    sobre: '05 — Clients',
+    titol: 'El que diuen',
+    veureTotes: 'Veure totes les ressenyes a Google',
+    client: 'Client a Google',
+    estrelles: 'ressenyes a Google',
+  },
+  horari: {
+    sobre: '08 — On som',
+    titol: 'Horari',
+    dies: ['Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte', 'Diumenge'],
+    tancat: 'Tancat',
+    avui: 'avui',
+    text: 'Per a consultes, passa en aquest horari o escriu-nos. Les sessions es fan amb cita.',
+  },
+  contacte: {
+    adreca: 'Adreça',
+    insta: 'Instagram de l’estudi',
+    dm: 'Escriure per Instagram',
+    comArribar: 'Com arribar',
+    mapaTitol: 'Mapa de Black House Tattoo Studio a Reus',
+  },
+  footer: {
+    avis: 'Avís legal',
+    privacitat: 'Privacitat',
+    cookies: 'Cookies',
+    demo: 'Versió de demostració. Fotos de la fitxa de Google Maps de l’estudi.',
+  },
+};
+
+const es: typeof ca = {
+  meta: {
+    title: 'Black House Tattoo Studio · Estudio de tatuajes en Reus',
+    description:
+      'Estudio de tatuajes en la calle Espronceda, 5A de Reus. Realismo black & grey, chicano, fineline y blackwork. Pide cita por Instagram.',
+  },
+  altreIdioma: { href: '/', label: 'Català' },
+  nav: { artistes: 'Artistas', treballs: 'Trabajos', cita: 'Cita', cures: 'Cuidados', onSom: 'Dónde estamos' },
+  estat: {
+    obert: 'Abierto ahora',
+    tancat: 'Cerrado ahora',
+    tancaA: 'cierra a las',
+    obreA: 'abre a las',
+    obreDema: 'abre mañana a las',
+    obreDia: 'abre el',
+    a: 'a las',
+    avisTancat: 'Cerrado temporalmente',
+    dies: ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'],
+  },
+  hero: {
+    sobre: 'Tattoo studio · Reus',
+    titol: ['Arte, detalle y', 'personalidad.'],
+    text: 'Realismo en blanco y negro, chicano, fineline y blackwork. Diseños hechos para ti, en un estudio limpio y tranquilo en la calle Espronceda.',
+    cta: 'Pide cita',
+    cta2: 'Ver trabajos',
+    fotoAlt: 'La fachada de Black House Tattoo Studio, negra, con el rótulo y el neón rosa',
+    ressenyes: 'reseñas en Google',
+  },
+  artistes: {
+    sobre: '01 — El equipo',
+    titol: 'Elige a tu artista',
+    text: 'Dos estilos muy distintos bajo el mismo techo. Elige con quién quieres tatuarte y te llevamos a su trabajo.',
+    tots: 'Todos',
+    veureInsta: 'Ver su Instagram',
+    demanar: 'Pedir cita con',
+    bio: {
+      nawi: 'Piezas grandes de realismo en blanco y negro y estilo chicano: retratos, religioso, calaveras, relojes. Tiene clientes que vuelven desde 2021.',
+      paula: 'Línea fina y blackwork: piezas delicadas, letras y diseños pequeños con mucho detalle. Agenda abierta.',
+    },
+  },
+  galeria: {
+    sobre: '02 — Trabajos',
+    titol: 'Piel, tinta y tiempo',
+    text: 'Algunos de los trabajos hechos en el estudio. Hay muchos más en Instagram, también curados.',
+    senseFotos: 'Todavía no tenemos sus fotos aquí. Mira su trabajo en Instagram mientras tanto.',
+    mesInsta: 'Más trabajos en Instagram',
+    alts: {
+      'oni-pit': 'Máscara oni con ornamentos en el pecho, en realismo blanco y negro',
+      'ull-rellotge': 'Antebrazo con el ojo de la providencia, un reloj y una rosa',
+      'dona-calavera': 'Antebrazo con un retrato de mujer y una calavera',
+      'dona-ulls-embenats': 'Antebrazo con un retrato de mujer con los ojos vendados',
+      'crist-esquena': 'Cristo crucificado en toda la espalda con la inscripción Natus Vincere',
+    },
+  },
+  estudi: {
+    sobre: '03 — El estudio',
+    titol: 'Como en casa',
+    text: 'Un espacio limpio, con luz, buena música y el tiempo que haga falta. Material de un solo uso y cabina pensada para sesiones largas.',
+    punts: ['Material estéril de un solo uso', 'Diseño a medida, sin prisa', 'Sesiones largas cómodas'],
+    altCabina: 'La cabina de tatuar, con la camilla y una línea de neón azul en la pared',
+    altRecepcio: 'La recepción del estudio con el logo y el neón magenta',
+  },
+  cita: {
+    sobre: '04 — Cita',
+    titol: 'Cuéntanos tu idea',
+    text: 'Rellena esto en un minuto. Te preparamos el mensaje y te abrimos el chat de Instagram del estudio: solo tienes que pegarlo y enviarlo.',
+    artista: '¿Con quién?',
+    qualsevol: 'Me da igual',
+    tipus: '¿Qué quieres?',
+    tipusOpcions: [
+      ['propi', 'Diseño a medida'],
+      ['flash', 'Un flash del estudio'],
+      ['coverup', 'Tapar uno (cover-up)'],
+      ['nose', 'Todavía no lo sé'],
+    ],
+    zona: 'Zona del cuerpo',
+    zonaPh: 'Antebrazo, espalda, costillas…',
+    mida: 'Tamaño aproximado',
+    mides: [
+      ['petit', 'Pequeño (hasta 5 cm)'],
+      ['mitja', 'Mediano (mano abierta)'],
+      ['gran', 'Grande (antebrazo, muslo…)'],
+      ['peca', 'Pieza entera (manga, espalda…)'],
+    ],
+    idea: 'Tu idea',
+    ideaPh: 'Cuenta qué te gustaría. Si tienes referencias, podrás mandarlas por Instagram.',
+    nom: 'Tu nombre',
+    enviar: 'Copiar y abrir Instagram',
+    copiat: 'Mensaje copiado. Pégalo en el chat y envíalo.',
+    noCopiat: 'No lo hemos podido copiar. Cópialo de aquí:',
+    previa: 'El mensaje que enviarás',
+    nota: 'Instagram no deja escribir el mensaje por ti: por eso lo copiamos. Si lo prefieres, pásate por el estudio.',
+    missatge: {
+      hola: '¡Hola! Escribo desde la web para pedir cita.',
+      artista: 'Artista',
+      tipus: 'Qué quiero',
+      zona: 'Zona',
+      mida: 'Tamaño',
+      idea: 'Idea',
+      nom: 'Nombre',
+    },
+  },
+  cures: {
+    sobre: '06 — Cuidados',
+    titol: 'Un buen tatuaje también se cuida',
+    text: 'Lo que hacemos en la cabina es la mitad. La otra mitad es tuya las próximas semanas.',
+    avis: 'Son consejos generales: sigue siempre lo que te diga tu tatuador.',
+    passos: [
+      ['Las primeras horas', 'Deja el film o el apósito el tiempo que te haya indicado el tatuador. Después, lava con agua tibia y jabón neutro, con las manos limpias.'],
+      ['Crema, poca', 'Una capa muy fina de crema cicatrizante dos o tres veces al día. Tiene que respirar: mejor poco que mucho.'],
+      ['No toques', 'Picará y hará costra. No la rasques ni la arranques: es la tinta asentándose.'],
+      ['Nada de sol ni agua', 'Ni playa, ni piscina, ni sauna mientras se cura. Después, protector solar alto siempre: el sol es lo que más hace perder color.'],
+    ],
+  },
+  preguntes: {
+    sobre: '07 — Dudas',
+    titol: 'Preguntas frecuentes',
+    items: [
+      ['¿Cuánto cuesta un tatuaje?', 'Depende del tamaño, la zona y el detalle. Cuéntanos la idea y te damos presupuesto sin compromiso.'],
+      ['¿Hay que dejar señal?', 'Para reservar la sesión se pide una señal que se descuenta del precio final. Te lo explicamos al darte cita.'],
+      ['¿Puedo ir sin cita?', 'Para consultas sí, en horario de apertura. Para tatuar, mejor con cita, salvo los días de flash.'],
+      ['¿Hacéis retoques?', 'Sí: si después de curar hay que repasar alguna zona, te lo miramos.'],
+      ['¿Puedo tatuarme si soy menor?', 'Solo tatuamos a mayores de edad.'],
+      ['¿Hacéis cover-ups?', 'Sí, tapamos o renovamos tatuajes antiguos. Mándanos una foto de lo que tienes y lo hablamos.'],
+    ],
+  },
+  opinions: {
+    sobre: '05 — Clientes',
+    titol: 'Lo que dicen',
+    veureTotes: 'Ver todas las reseñas en Google',
+    client: 'Cliente en Google',
+    estrelles: 'reseñas en Google',
+  },
+  horari: {
+    sobre: '08 — Dónde estamos',
+    titol: 'Horario',
+    dies: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+    tancat: 'Cerrado',
+    avui: 'hoy',
+    text: 'Para consultas, pásate en este horario o escríbenos. Las sesiones se hacen con cita.',
+  },
+  contacte: {
+    adreca: 'Dirección',
+    insta: 'Instagram del estudio',
+    dm: 'Escribir por Instagram',
+    comArribar: 'Cómo llegar',
+    mapaTitol: 'Mapa de Black House Tattoo Studio en Reus',
+  },
+  footer: {
+    avis: 'Aviso legal',
+    privacitat: 'Privacidad',
+    cookies: 'Cookies',
+    demo: 'Versión de demostración. Fotos de la ficha de Google Maps del estudio.',
+  },
+};
+
+export const textos = { ca, es };

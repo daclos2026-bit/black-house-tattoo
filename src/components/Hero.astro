@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { textos, type Lang } from '../i18n/textos';
+import { negoci } from '../config';
+import facana from '../assets/img/facana.jpg';
+import Neo from './Neo.astro';
+import Estat from './Estat.astro';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].hero;
+---
+
+<section class="relative overflow-hidden">
+  <div class="mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-7xl items-center gap-10 px-5 pt-10 pb-40 lg:grid-cols-[1.2fr_1fr] lg:pt-6 lg:pb-36">
+    <div class="relative z-10 min-w-0">
+      <p class="sobre">{t.sobre}</p>
+      <h1 class="titol mt-6 text-[clamp(2.2rem,5.2vw,4.9rem)]">
+        <span class="block">{t.titol[0]}</span>
+        <span class="neo-magenta block">{t.titol[1]}</span>
+      </h1>
+      <p class="mt-7 max-w-xl text-lg leading-relaxed text-os/80">{t.text}</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#cita" class="btn btn-magenta">{t.cta}</a>
+        <a href="#treballs" class="btn btn-linia">{t.cta2}</a>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
+        <a href={negoci.mapsUrl} target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cian">
+          <span class="text-magenta" aria-hidden="true">★★★★★</span>
+          <strong>{negoci.nota}</strong>
+          <span class="text-gris">· {negoci.ressenyes} {t.ressenyes}</span>
+        </a>
+        <Estat lang={lang} />
+      </div>
+    </div>
+
+    <div class="gra relative -mx-5 aspect-[4/5] overflow-hidden sm:mx-0 sm:rounded lg:aspect-[4/5] lg:max-h-[78svh]">
+      <Image src={facana} alt={t.fotoAlt} widths={[480, 800, 1200]} sizes="(min-width: 1024px) 45vw, 100vw" loading="eager" fetchpriority="high" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-negre via-negre/10 to-transparent lg:bg-gradient-to-r lg:from-negre lg:via-transparent"></div>
+    </div>
+  </div>
+  <!-- L'element de la portada: el neó de la cabina travessant la pantalla -->
+  <Neo variant="pols" color="cian" immediata class="pointer-events-none absolute bottom-4 left-0 h-24 w-full md:bottom-6" />
+</section>

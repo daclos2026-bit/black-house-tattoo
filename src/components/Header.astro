@@ -1,0 +1,44 @@
+---
+import { textos, type Lang } from '../i18n/textos';
+import Logo from './Logo.astro';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang];
+const base = lang === 'ca' ? '/' : '/es/';
+const enllacos = [
+  ['#artistes', t.nav.artistes],
+  ['#treballs', t.nav.treballs],
+  ['#cures', t.nav.cures],
+  ['#on-som', t.nav.onSom],
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-linia/70 bg-negre/85 backdrop-blur-md">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3">
+    <a href={base} aria-label="Black House Tattoo Studio" class="shrink-0"><Logo /></a>
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Principal">
+      {enllacos.map(([href, label]) => (
+        <a href={href} class="sobre !text-os/75 transition hover:!text-cian">{label}</a>
+      ))}
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href={t.altreIdioma.href} hreflang={lang === 'ca' ? 'es' : 'ca'} class="text-sm text-gris hover:text-os">{t.altreIdioma.label}</a>
+      <a href="#cita" class="btn btn-magenta hidden !px-4 !py-2.5 sm:inline-flex">{t.nav.cita}</a>
+      <details class="relative lg:hidden">
+        <summary class="grid h-10 w-10 cursor-pointer list-none place-items-center rounded hover:bg-negre-3" aria-label="Menú">
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </summary>
+        <nav class="absolute right-0 mt-3 flex w-60 flex-col rounded border border-linia bg-negre-2 p-2 shadow-2xl" aria-label="Menú mòbil">
+          {[...enllacos, ['#cita', t.nav.cita]].map(([href, label]) => (
+            <a href={href} class="rounded px-3 py-2.5 font-semibold hover:bg-negre-3 hover:text-cian">{label}</a>
+          ))}
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.querySelectorAll('header details nav a').forEach((a) =>
+    a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')),
+  );
+</script>

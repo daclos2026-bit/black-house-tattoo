@@ -1,0 +1,42 @@
+---
+// "Tria el teu artista": les dues fitxes. Els botons [data-tria] els gestiona src/scripts/artista.ts.
+import { textos, type Lang } from '../i18n/textos';
+import { artistes, igLink } from '../config';
+import Neo from './Neo.astro';
+const { lang } = Astro.props as { lang: Lang };
+const t = textos[lang].artistes;
+const colors = { nawi: 'magenta', paula: 'cian' } as const;
+---
+
+<section id="artistes" class="border-t border-linia">
+  <div class="mx-auto max-w-7xl px-5 py-24 md:py-32">
+    <div class="revela grid gap-6 md:grid-cols-[1fr_1fr] md:items-end">
+      <div>
+        <p class="sobre">{t.sobre}</p>
+        <h2 class="titol mt-4 text-4xl md:text-6xl">{t.titol}</h2>
+      </div>
+      <p class="max-w-md text-lg leading-relaxed text-gris md:justify-self-end">{t.text}</p>
+    </div>
+
+    <div class="mt-14 grid gap-5 md:grid-cols-2">
+      {artistes.map((a, i) => (
+        <article class="revela group relative flex flex-col overflow-hidden rounded border border-linia bg-negre-2 p-7 md:p-10" style={`transition-delay:${i * 120}ms`}>
+          <Neo variant="traç" color={colors[a.id]} class="pointer-events-none absolute -top-2 right-0 h-16 w-3/4 opacity-90" />
+          <p class="sobre !text-gris">0{i + 1}</p>
+          <h3 class={`titol mt-10 text-5xl md:text-7xl ${a.id === 'nawi' ? 'neo-magenta' : 'neo-cian'}`}>{a.nom}</h3>
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {a.estils.map((e) => (
+              <li class="rounded-full border border-linia px-3 py-1 text-sm text-os/85">{e}</li>
+            ))}
+          </ul>
+          <p class="mt-6 max-w-md flex-1 leading-relaxed text-os/75">{t.bio[a.id]}</p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#cita" data-tria={a.id} class="btn btn-magenta">{t.demanar} {a.nom.split(' ')[0]}</a>
+            <a href="#treballs" data-tria={a.id} class="btn btn-linia">{textos[lang].nav.treballs}</a>
+            <a href={igLink(a.instagram)} target="_blank" rel="noopener" class="ml-1 text-sm text-gris underline-offset-4 hover:text-cian hover:underline">@{a.instagram}</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

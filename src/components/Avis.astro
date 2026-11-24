@@ -1,0 +1,15 @@
+---
+// Franja d'avís (config.ts → avis). El JS l'amaga quan passa la data "fins".
+import { avis } from '../config';
+import type { Lang } from '../i18n/textos';
+const { lang } = Astro.props as { lang: Lang };
+---
+{avis.actiu && (
+  <div data-avis={avis.fins} class="bg-magenta px-5 py-2.5 text-center text-sm font-semibold text-white">
+    {avis[lang]}
+  </div>
+)}
+<script>
+  import { avisActiu } from '../scripts/estat';
+  if (!avisActiu()) document.querySelector('[data-avis]')?.remove();
+</script>
